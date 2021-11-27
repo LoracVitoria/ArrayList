@@ -129,8 +129,9 @@ public class Sistema {
                 System.out.println("\nPassageiro a ser removido encontrado comparando o conteúdo dos objetos! ");
                 it2.remove();
                 System.out.println("Passageiro removido! ");
-            }
-        }
+            }else{
+                System.out.println("Não encontrado!");
+            }        }
         System.out.println("\n");
     }
 
