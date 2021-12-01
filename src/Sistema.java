@@ -42,6 +42,10 @@ public class Sistema {
             System.out.println("---------------");
             System.out.println("MENU");
             System.out.println("---------------");
+            System.out.println("1. Cadastrar");
+            System.out.println("2. Listar");
+            System.out.println("3. Consultar");
+            System.out.println("4. Remover");
             System.out.println("1. Cadastrar passageiros");
             System.out.println("2. Listar passageiros");
             System.out.println("3. Consultar passageiro");
@@ -81,7 +85,7 @@ public class Sistema {
             }
         }
     }
-//teste
+
 
 
     public static void main(String[] args) {
@@ -113,6 +117,7 @@ public class Sistema {
         Iterator<Passageiro> it = tripulantes.iterator();
         while (it.hasNext()) {
             Passageiro pas = it.next();
+            System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf());
             System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf() + "\nTelefone: " +pas.getTelefone());
         }
         System.out.println("\n");
@@ -129,6 +134,7 @@ public class Sistema {
         while (it3.hasNext()) {
             Passageiro pas = it3.next();
             if (pas.getCpf().equals(cpfParaConsultar)) {
+                System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf());
                 System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf() + "\nTelefone: " +pas.getTelefone());
                 break;
             }
@@ -181,6 +187,7 @@ public class Sistema {
         v5.setCodigo(444);
         c2.voos.add(v5);
 
+
         System.out.println("Cadastro realizado com sucesso!");
 
 
@@ -192,6 +199,7 @@ public class Sistema {
 
         c2.setNomeSocial("Latam");
         c2.setCnpj("33.937.681/0001-78");
+
 
         System.out.println("Cadastro realizado com sucesso!");
     }
@@ -218,7 +226,6 @@ public class Sistema {
         Iterator<Voo> it6 = voos.iterator();
         String codigoConsulta = scan4.next();
         Integer i = 0;
-
 
         while (it6.hasNext()) {
             i++;
