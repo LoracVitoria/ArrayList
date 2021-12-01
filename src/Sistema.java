@@ -11,11 +11,12 @@ public class Sistema {
 
     ArrayList<Passageiro> tripulantes = new ArrayList<Passageiro>();
     ArrayList<Voo> voos = new ArrayList<Voo>();
-
+    ArrayList<Companhia> companhias = new ArrayList<Companhia>();
 
     Scanner scan = new Scanner(System.in);
     Scanner scan2 = new Scanner(System.in);
     Scanner scan3 = new Scanner(System.in);
+    Scanner scan4 = new Scanner(System.in);
 
     Companhia c1 = new Companhia();
     Companhia c2 = new Companhia();
@@ -41,10 +42,15 @@ public class Sistema {
             System.out.println("---------------");
             System.out.println("MENU");
             System.out.println("---------------");
-            System.out.println("1. Cadastrar");
-            System.out.println("2. Listar");
-            System.out.println("3. Consultar");
-            System.out.println("4. Remover");
+            System.out.println("1. Cadastrar passageiros");
+            System.out.println("2. Listar passageiros");
+            System.out.println("3. Consultar passageiro");
+            System.out.println("4. Remover passageiros");
+            System.out.println("5. Cadastrar companhias");
+            System.out.println("6. Cadastrar voos");
+            System.out.println("7. Listar Companhias");
+            System.out.println("8. Listar Voos");
+            System.out.println("9. Consultar passageiros em um voo");
             System.out.println("0. Sair");
             System.out.println("\n");
             opcao = scan.nextInt();
@@ -57,6 +63,16 @@ public class Sistema {
                 consultarPas();
             }else if(opcao==4){
                 removerPas();
+            }else if (opcao==5){
+                cadastrarCompanhias();
+            }else if (opcao==6) {
+                cadastrarVoos();
+            }else if(opcao==7){
+                listarCompanhias();
+            }else if(opcao==8){
+                listarVoos();
+            }else if(opcao==9){
+                consultarVoo();
             }else if(opcao==0){
                 break;
             }else{
@@ -65,7 +81,7 @@ public class Sistema {
             }
         }
     }
-
+//teste
 
 
     public static void main(String[] args) {
@@ -76,14 +92,17 @@ public class Sistema {
     void cadastrarPas() {
         p1.setCpf("123.123.123-12");
         p1.setNome("Marcos");
+        p1.setTelefone(999444444);
         tripulantes.add(p1);
 
         p2.setCpf("234.234.234-23");
         p2.setNome("Ana");
+        p2.setTelefone(991555555);
         tripulantes.add(p2);
 
         p3.setCpf("345.345.345-34");
         p3.setNome("Lucas");
+        p3.setTelefone(988666666);
         tripulantes.add(p3);
 
         System.out.println("Cadastro realizado com sucesso!");
@@ -94,7 +113,7 @@ public class Sistema {
         Iterator<Passageiro> it = tripulantes.iterator();
         while (it.hasNext()) {
             Passageiro pas = it.next();
-            System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf());
+            System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf() + "\nTelefone: " +pas.getTelefone());
         }
         System.out.println("\n");
     }
@@ -110,7 +129,7 @@ public class Sistema {
         while (it3.hasNext()) {
             Passageiro pas = it3.next();
             if (pas.getCpf().equals(cpfParaConsultar)) {
-                System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf());
+                System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf() + "\nTelefone: " +pas.getTelefone());
                 break;
             }
         }
@@ -162,6 +181,9 @@ public class Sistema {
         v5.setCodigo(444);
         c2.voos.add(v5);
 
+        System.out.println("Cadastro realizado com sucesso!");
+
+
     }
     void cadastrarCompanhias(){
 
@@ -170,9 +192,44 @@ public class Sistema {
 
         c2.setNomeSocial("Latam");
         c2.setCnpj("33.937.681/0001-78");
+
+        System.out.println("Cadastro realizado com sucesso!");
     }
 
+    void listarCompanhias(){
+        Iterator<Companhia> it4 = companhias.iterator();
+        while (it4.hasNext()) {
+            Companhia comp = it4.next();
+            System.out.println("Companhia: " + comp.getNomeSocial() + "   CNPJ: " + comp.getCnpj());
+        }
+        System.out.println("\n");
+    }
+    void listarVoos(){
+        Iterator<Voo> it5 = voos.iterator();
+        while (it5.hasNext()) {
+            Voo vo = it5.next();
+            System.out.println("Destino: " + vo.getDestino() + "   Saída: " + vo.getSaida() + "\nCódigo: " + vo.getCodigo());
+        }
+        System.out.println("\n");
+    }
+    void consultarVoo(){
+        System.out.println("Digite o código do voo: ");
+
+        Iterator<Voo> it6 = voos.iterator();
+        String codigoConsulta = scan4.next();
+        Integer i = 0;
 
 
+        while (it6.hasNext()) {
+            i++;
+            Voo vo = it6.next();
+          Integer cod = Integer.parseInt(codigoConsulta);
+            if (vo.getCodigo() == cod) {
+                System.out.println("Passageiro: " + this.tripulantes.get(i).getNome() + "   CPF: " + this.tripulantes.get(i).getCpf() + "\nTelefone: " + this.tripulantes.get(i).getTelefone());
+                break;
+            }
+        }
+        System.out.println("\n");
+    }
 
 }
