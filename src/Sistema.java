@@ -42,10 +42,6 @@ public class Sistema {
             System.out.println("---------------");
             System.out.println("MENU");
             System.out.println("---------------");
-            System.out.println("1. Cadastrar");
-            System.out.println("2. Listar");
-            System.out.println("3. Consultar");
-            System.out.println("4. Remover");
             System.out.println("1. Cadastrar passageiros");
             System.out.println("2. Listar passageiros");
             System.out.println("3. Consultar passageiro");
@@ -94,6 +90,7 @@ public class Sistema {
     }
 
     void cadastrarPas() {
+
         p1.setCpf("123.123.123-12");
         p1.setNome("Marcos");
         p1.setTelefone(999444444);
@@ -109,12 +106,13 @@ public class Sistema {
         p3.setTelefone(988666666);
         tripulantes.add(p3);
 
+        v1.setTripulantes(tripulantes);
         System.out.println("Cadastro realizado com sucesso!");
         System.out.println("\n");
     }
 
     void listarPas() {
-        Iterator<Passageiro> it = tripulantes.iterator();
+        Iterator<Passageiro> it = v1.getTripulantes().iterator();
         while (it.hasNext()) {
             Passageiro pas = it.next();
             System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf());
@@ -160,6 +158,14 @@ public class Sistema {
         System.out.println("\n");
     }
 
+//    @Override
+//    public String toString() {
+//        return "Sistema{" +
+//                "c1=" + c1 +
+//                ", c2=" + c2 +
+//                '}';
+//    }
+
     void cadastrarVoos(){
         v1.setDestino("São Paulo");
         v1.setSaida("Rio de Janeiro");
@@ -197,10 +203,11 @@ public class Sistema {
 
         c1.setNomeSocial("Azul");
         c1.setCnpj("09.305.994/0001-29");
+        companhias.add(c1);
 
         c2.setNomeSocial("Latam");
         c2.setCnpj("33.937.681/0001-78");
-
+        companhias.add(c2);
 
         System.out.println("Cadastro realizado com sucesso!");
     }
@@ -214,9 +221,14 @@ public class Sistema {
         System.out.println("\n");
     }
     void listarVoos(){
-        Iterator<Voo> it5 = voos.iterator();
+        Iterator<Voo> it5 = c1.voos.iterator();
         while (it5.hasNext()) {
             Voo vo = it5.next();
+            System.out.println("Destino: " + vo.getDestino() + "   Saída: " + vo.getSaida() + "\nCódigo: " + vo.getCodigo());
+        }
+        Iterator<Voo> it6 = c2.voos.iterator();
+        while (it6.hasNext()) {
+            Voo vo = it6.next();
             System.out.println("Destino: " + vo.getDestino() + "   Saída: " + vo.getSaida() + "\nCódigo: " + vo.getCodigo());
         }
         System.out.println("\n");
@@ -224,19 +236,24 @@ public class Sistema {
     void consultarVoo(){
         System.out.println("Digite o código do voo: ");
 
-        Iterator<Voo> it6 = voos.iterator();
+        Iterator<Companhia> it6 = companhias.iterator();
         String codigoConsulta = scan4.next();
         Integer i = 0;
 
         while (it6.hasNext()) {
-            i++;
-            Voo vo = it6.next();
-          Integer cod = Integer.parseInt(codigoConsulta);
-            if (vo.getCodigo() == cod) {
-                System.out.println("Passageiro: " + this.tripulantes.get(i).getNome() + "   CPF: " + this.tripulantes.get(i).getCpf() + "\nTelefone: " + this.tripulantes.get(i).getTelefone());
-                break;
+            Companhia c = it6.next();
+            Iterator<Voo> it7 = c.voos.iterator();
+            while (it7.hasNext()) {
+                i++;
+                Voo vo = it7.next();
+                Integer cod = Integer.parseInt(codigoConsulta);
+                if (vo.getCodigo() .equals(cod)) {
+                    System.out.println("Passageiro: " + this.tripulantes.get(i).getNome() + "   CPF: " + this.tripulantes.get(i).getCpf() + "\nTelefone: " + this.tripulantes.get(i).getTelefone());
+                    break;
+                }
             }
         }
+
         System.out.println("\n");
     }
 

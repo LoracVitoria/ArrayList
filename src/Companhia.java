@@ -24,4 +24,13 @@ public class Companhia {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+
+    public ArrayList<Voo> getVoos() {
+        return voos;
+    }
+
+    public void setVoos(ArrayList<Voo> voos) {
+        this.voos = voos;
+    }
 }
+
