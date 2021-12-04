@@ -115,7 +115,6 @@ public class Sistema {
         Iterator<Passageiro> it = v1.getTripulantes().iterator();
         while (it.hasNext()) {
             Passageiro pas = it.next();
-            System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf());
             System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf() + "\nTelefone: " +pas.getTelefone());
         }
         System.out.println("\n");
@@ -132,7 +131,6 @@ public class Sistema {
         while (it3.hasNext()) {
             Passageiro pas = it3.next();
             if (pas.getCpf().equals(cpfParaConsultar)) {
-                System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf());
                 System.out.println("Passageiro: " + pas.getNome() + "   CPF: " + pas.getCpf() + "\nTelefone: " +pas.getTelefone());
                 break;
             }
@@ -152,6 +150,7 @@ public class Sistema {
                 System.out.println("\nPassageiro a ser removido encontrado comparando o conteúdo dos objetos! ");
                 it2.remove();
                 System.out.println("Passageiro removido! ");
+                break;
             }else{
                 System.out.println("Não encontrado!");
             }        }
@@ -195,7 +194,7 @@ public class Sistema {
         c2.voos.add(v5);
 
 
-        System.out.println("Cadastro realizado com sucesso!");
+        System.out.println("Cadastro realizado com sucesso!\n");
 
 
     }
@@ -209,7 +208,8 @@ public class Sistema {
         c2.setCnpj("33.937.681/0001-78");
         companhias.add(c2);
 
-        System.out.println("Cadastro realizado com sucesso!");
+        System.out.println("Cadastro realizado com sucesso! \n");
+
     }
 
     void listarCompanhias(){
@@ -248,7 +248,12 @@ public class Sistema {
                 Voo vo = it7.next();
                 Integer cod = Integer.parseInt(codigoConsulta);
                 if (vo.getCodigo() .equals(cod)) {
-                    System.out.println("Passageiro: " + this.tripulantes.get(i).getNome() + "   CPF: " + this.tripulantes.get(i).getCpf() + "\nTelefone: " + this.tripulantes.get(i).getTelefone());
+                    Iterator<Passageiro> it9 = vo.tripulantes.iterator();
+                    while (it9.hasNext()) {
+                        Passageiro p = it9.next();
+                        System.out.println("Passageiro: " + p.getNome() + "   CPF: " + p.getCpf() + "\nTelefone: " + p.getTelefone());
+
+                    }
                     break;
                 }
             }
